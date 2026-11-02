@@ -1,0 +1,26 @@
+name: Build ST Video Downloader APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Extract project ZIP
+        run: |
+          unzip -o ST-VIDEO-DOWNLOADER-Full-Project.zip -d project
+
+      - name: Build APK
+        run: |
+          find project -name gradlew -type f
